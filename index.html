@@ -143,9 +143,6 @@ function startExperience(){
     
     latido.play().then(()=>{
         console.log("Sonando");
-    }).catch(error=>{
-        alert("El navegador bloqueó el sonido. Toca la pantalla otra vez.");
-    });
 
     playScene(1, 2000);
     playScene(2, 9000);
@@ -177,7 +174,7 @@ function clearScenes(){
         if(t) t.style.opacity=0;
     });
 }
-</script>
+    
 .gallina{
     position:fixed;
     bottom:40px;
@@ -262,8 +259,7 @@ function clearScenes(){
 }
 document.querySelector(".gallina").style.animation =
 "caminarPantalla 8s linear forwards";
-
-
+    
 <div class="gallina">
   <div class="cuerpo"></div>
   <div class="cabeza"></div>
