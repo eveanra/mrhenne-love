@@ -109,9 +109,11 @@ button{
 
 <button onclick="startFilm()">Comenzar 🫀</button>
 
+<!--
 <audio id="heartbeat">
     <source src="latido.mp3" type="audio/mpeg">
 </audio>
+-->
 
 <audio id="music" loop>
     <source src="cancion.mp3" type="audio/mpeg">
@@ -159,7 +161,7 @@ function startFilm(){
     document.getElementById("intro").style.opacity=0;
     document.querySelector("button").style.display="none";
 
-    heartbeat.play();
+  // heartbeat.play();
 
     setTimeout(()=>{
         music.volume = 0;
