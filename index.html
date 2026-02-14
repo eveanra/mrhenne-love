@@ -178,8 +178,98 @@ function clearScenes(){
     });
 }
 </script>
+.gallina{
+    position:fixed;
+    bottom:40px;
+    left:-150px;
+    width:100px;
+    height:80px;
+    z-index:50;
+}
+
+/* cuerpo */
+.cuerpo{
+    width:70px;
+    height:50px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
+    bottom:20px;
+    left:20px;
+}
+
+/* cabeza */
+.cabeza{
+    width:35px;
+    height:35px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
+    top:0;
+    left:60px;
+}
+
+/* pico */
+.pico{
+    width:0;
+    height:0;
+    border-left:10px solid orange;
+    border-top:6px solid transparent;
+    border-bottom:6px solid transparent;
+    position:absolute;
+    top:12px;
+    left:92px;
+}
+
+/* patas */
+.pata{
+    width:4px;
+    height:20px;
+    background:orange;
+    position:absolute;
+    bottom:0;
+    left:40px;
+    transform-origin:top;
+}
+
+.pata2{
+    left:60px;
+}
+
+/* animación de patas */
+.pata1{
+    animation: moverPata1 0.4s infinite alternate;
+}
+
+.pata2{
+    animation: moverPata2 0.4s infinite alternate;
+}
+
+@keyframes moverPata1{
+    from{ transform:rotate(20deg); }
+    to{ transform:rotate(-20deg); }
+}
+
+@keyframes moverPata2{
+    from{ transform:rotate(-20deg); }
+    to{ transform:rotate(20deg); }
+}
+
+/* caminar por pantalla */
+@keyframes caminarPantalla{
+    0%{ left:-150px; }
+    100%{ left:110%; }
+}
+document.querySelector(".gallina").style.animation =
+"caminarPantalla 8s linear forwards";
 
 
-
+<div class="gallina">
+  <div class="cuerpo"></div>
+  <div class="cabeza"></div>
+  <div class="pico"></div>
+  <div class="pata pata1"></div>
+  <div class="pata pata2"></div>
+</div>
 </body>
 </html>
