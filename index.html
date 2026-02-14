@@ -92,9 +92,9 @@ button{
 <body>
 
 <div id="startScreen">
-    <h2>With love</h2>
-    <p>Happy Valentine's Day</p>
-    <button onclick="startExperience()">Comenzar 🫀</button>
+    <h2>14/02/2026</h2>
+    <p>Feliz San Valentin</p>
+    <button onclick="startExperience()">🫀</button>
 </div>
 
 <audio id="latido" loop>
@@ -103,22 +103,22 @@ button{
 
 <div class="scene" id="scene1">
     <img src="foto1.jpg">
-    <div class="text">We're very far apart</div>
+    <div class="text">Estamos a 9,500 km de distancia</div>
 </div>
 
 <div class="scene" id="scene2">
     <img src="foto2.jpg">
-    <div class="text">but even so</div>
+    <div class="text"> y aunque no te tenga cerca... </div>
 </div>
 
 <div class="scene" id="scene3">
     <img src="foto3.jpg">
-    <div class="text">I feel you close</div>
+    <div class="text"> te pienso </div>
 </div>
 
 <div class="scene" id="scene4">
     <img src="foto4.jpg">
-    <div class="text">i miss you</div>
+    <div class="text">en todo momento.</div>
 </div>
 
 <div class="scene" id="scene5">
@@ -129,20 +129,18 @@ button{
 <div class="final" id="final">
     <div>Eve ❤️ Mr. Henne</div>
     <div style="font-size:26px;margin-top:25px;">
-        Te sigo queriendo como el primer día.
+        Te quiero como el primer día.
     </div>
 </div>
 
 <script>
+let latido = document.getElementById("latido");
+
 function startExperience(){
     document.getElementById("startScreen").style.display="none";
 
-    let latido = document.getElementById("latido");
-    latido.currentTime = 0;
-    latido.volume = 1;
-    
-    latido.play().then(()=>{
-        console.log("Sonando");
+    latido.volume = 0.8;
+    latido.play();
 
     playScene(1, 2000);
     playScene(2, 9000);
@@ -152,6 +150,7 @@ function startExperience(){
 
     setTimeout(()=>{
         clearScenes();
+        latido.volume = 0.3;
         document.getElementById("final").style.opacity=1;
     },37000);
 }
@@ -174,98 +173,7 @@ function clearScenes(){
         if(t) t.style.opacity=0;
     });
 }
-    
-.gallina{
-    position:fixed;
-    bottom:40px;
-    left:-150px;
-    width:100px;
-    height:80px;
-    z-index:50;
-}
+</script>
 
-/* cuerpo */
-.cuerpo{
-    width:70px;
-    height:50px;
-    background:white;
-    border-radius:50%;
-    position:absolute;
-    bottom:20px;
-    left:20px;
-}
-
-/* cabeza */
-.cabeza{
-    width:35px;
-    height:35px;
-    background:white;
-    border-radius:50%;
-    position:absolute;
-    top:0;
-    left:60px;
-}
-
-/* pico */
-.pico{
-    width:0;
-    height:0;
-    border-left:10px solid orange;
-    border-top:6px solid transparent;
-    border-bottom:6px solid transparent;
-    position:absolute;
-    top:12px;
-    left:92px;
-}
-
-/* patas */
-.pata{
-    width:4px;
-    height:20px;
-    background:orange;
-    position:absolute;
-    bottom:0;
-    left:40px;
-    transform-origin:top;
-}
-
-.pata2{
-    left:60px;
-}
-
-/* animación de patas */
-.pata1{
-    animation: moverPata1 0.4s infinite alternate;
-}
-
-.pata2{
-    animation: moverPata2 0.4s infinite alternate;
-}
-
-@keyframes moverPata1{
-    from{ transform:rotate(20deg); }
-    to{ transform:rotate(-20deg); }
-}
-
-@keyframes moverPata2{
-    from{ transform:rotate(-20deg); }
-    to{ transform:rotate(20deg); }
-}
-
-/* caminar por pantalla */
-@keyframes caminarPantalla{
-    0%{ left:-150px; }
-    100%{ left:110%; }
-}
-document.querySelector(".gallina").style.animation =
-"caminarPantalla 8s linear forwards";
-    
-<div class="gallina">
-  <div class="cuerpo"></div>
-  <div class="cabeza"></div>
-  <div class="pico"></div>
-  <div class="pata pata1"></div>
-  <div class="pata pata2"></div>
-</div>
 </body>
 </html>
