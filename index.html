@@ -134,13 +134,18 @@ button{
 </div>
 
 <script>
-let latido = document.getElementById("latido");
-
 function startExperience(){
     document.getElementById("startScreen").style.display="none";
 
-    latido.volume = 0.8;
-    latido.play();
+    let latido = document.getElementById("latido");
+    latido.currentTime = 0;
+    latido.volume = 1;
+    
+    latido.play().then(()=>{
+        console.log("Sonando");
+    }).catch(error=>{
+        alert("El navegador bloqueó el sonido. Toca la pantalla otra vez.");
+    });
 
     playScene(1, 2000);
     playScene(2, 9000);
@@ -150,7 +155,6 @@ function startExperience(){
 
     setTimeout(()=>{
         clearScenes();
-        latido.volume = 0.3;
         document.getElementById("final").style.opacity=1;
     },37000);
 }
@@ -174,6 +178,8 @@ function clearScenes(){
     });
 }
 </script>
+
+
 
 </body>
 </html>
