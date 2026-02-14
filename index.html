@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para ti 🤍</title>
+<title>Eve ❤️ Mr. Henne</title>
 
 <style>
 body{
     margin:0;
     background:black;
     color:white;
-    font-family: Arial, sans-serif;
-    text-align:center;
+    font-family: 'Georgia', serif;
     overflow:hidden;
 }
 
@@ -23,16 +22,19 @@ body{
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    text-align:center;
     background:black;
     z-index:10;
 }
 
 button{
-    padding:15px 30px;
+    padding:15px 35px;
     font-size:18px;
-    background:white;
     border:none;
+    border-radius:30px;
     cursor:pointer;
+    background:white;
+    color:black;
     margin-top:20px;
 }
 
@@ -43,13 +45,46 @@ button{
     display:flex;
     justify-content:center;
     align-items:center;
+    flex-direction:column;
     opacity:0;
-    transition:opacity 2s;
+    transition:opacity 3s ease-in-out;
 }
 
 .scene img{
-    max-width:80%;
-    max-height:80%;
+    max-width:85%;
+    max-height:75%;
+    border-radius:20px;
+    box-shadow:0 0 60px rgba(255,255,255,0.15);
+    animation:zoom 18s ease-in-out infinite alternate;
+}
+
+@keyframes zoom{
+    from{transform:scale(1);}
+    to{transform:scale(1.07);}
+}
+
+.text{
+    margin-top:25px;
+    font-size:26px;
+    opacity:0;
+    transition:opacity 3s ease;
+    text-align:center;
+    padding:0 20px;
+    letter-spacing:1px;
+}
+
+.final{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-size:40px;
+    opacity:0;
+    transition:opacity 4s ease;
+    text-align:center;
 }
 </style>
 </head>
@@ -57,47 +92,86 @@ button{
 <body>
 
 <div id="startScreen">
-    <h1>Esto es para ti 🤍</h1>
-    <button onclick="startExperience()">Comenzar</button>
-</div>
-
-<div class="scene" id="scene1">
-    <img src="foto1.jpg">
-</div>
-
-<div class="scene" id="scene2">
-    <img src="foto2.jpg">
-</div>
-
-<div class="scene" id="scene3">
-    <h1>Te amo 🤍</h1>
+    <h2>Cierra los ojos un momento...</h2>
+    <p>Y escucha mi corazón.</p>
+    <button onclick="startExperience()">Comenzar 🫀</button>
 </div>
 
 <audio id="latido" loop>
     <source src="latido.mp3" type="audio/mpeg">
 </audio>
 
+<div class="scene" id="scene1">
+    <img src="foto1.jpg">
+    <div class="text">Desde aquella noche...</div>
+</div>
+
+<div class="scene" id="scene2">
+    <img src="foto2.jpg">
+    <div class="text">Nuestros corazones ya sabían.</div>
+</div>
+
+<div class="scene" id="scene3">
+    <img src="foto3.jpg">
+    <div class="text">Que no era casualidad.</div>
+</div>
+
+<div class="scene" id="scene4">
+    <img src="foto4.jpg">
+    <div class="text">Era destino.</div>
+</div>
+
+<div class="scene" id="scene5">
+    <img src="foto5.jpg">
+    <div class="text">Ich liebe dich 🤍</div>
+</div>
+
+<div class="final" id="final">
+    <div>Eve ❤️ Mr. Henne</div>
+    <div style="font-size:26px;margin-top:25px;">
+        Te sigo queriendo como el primer día.
+    </div>
+</div>
+
 <script>
+let latido = document.getElementById("latido");
+
 function startExperience(){
     document.getElementById("startScreen").style.display="none";
-    
-    let latido = document.getElementById("latido");
-    latido.volume = 0.5;
+
+    latido.volume = 0.8;
     latido.play();
 
-    showScene(1);
-}
-
-function showScene(num){
-    let current = document.getElementById("scene"+num);
-    current.style.opacity = 1;
+    playScene(1, 2000);
+    playScene(2, 9000);
+    playScene(3, 16000);
+    playScene(4, 23000);
+    playScene(5, 30000);
 
     setTimeout(()=>{
-        current.style.opacity = 0;
-        if(num < 3){
-            showScene(num+1);
-        }
-    },4000);
+        clearScenes();
+        latido.volume = 0.3;
+        document.getElementById("final").style.opacity=1;
+    },37000);
+}
+
+function playScene(num, delay){
+    setTimeout(()=>{
+        clearScenes();
+        let scene=document.getElementById("scene"+num);
+        let text=scene.querySelector(".text");
+        scene.style.opacity=1;
+        text.style.opacity=1;
+    },delay);
+}
+
+function clearScenes(){
+    let scenes=document.querySelectorAll(".scene");
+    scenes.forEach(s=>{
+        s.style.opacity=0;
+        let t=s.querySelector(".text");
+        if(t) t.style.opacity=0;
+    });
 }
 </script>
 
